@@ -24,7 +24,7 @@ The within-class scatter matrix is defined as
 
 $$
 \mathbf{S}_W =
-\sum_{c=1}^{C} \sum_{i \in \mathcal{C}_c}
+\sum_{c=1}^{C} \sum_{i \in c}
 (\mathbf{h}_i - \boldsymbol{\mu}_c)(\mathbf{h}_i - \boldsymbol{\mu}_c)^T
 $$
 
