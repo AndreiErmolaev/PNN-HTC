@@ -1,45 +1,35 @@
-This repository will later contain all the necessary codes and examples highlighting how the Hotelling trace criterion (HTC) can be used to predict the performance and optimize the physics-based extreme learning machines (ELMs).
-For the moment, I only place the basic Python function that performs the full analysis of the physics-based ELMs and computes the corresponding metrics.
-Some guidelines and usage examples are to be added later.
+# Hotelling Trace Criterion (HTC) for Physics-Based Extreme Learning Machines
+
+This repository accompanies our paper on the Hotelling Trace Criterion (HTC) as a predictive metric for physics-based extreme learning machines (ELMs). It provides the core Python function that performs the full HTC analysis of a physics-based ELM and computes the associated metrics. Usage examples and guidelines will be added.
 
 ## Hotelling Trace Criterion (HTC)
 
-To quantify the class separability of the hidden representation, we evaluate the Hotelling trace criterion (HTC) computed from the hidden layer matrix $\mathbf{H}$. Let $\mathbf{H} \in \mathbb{R}^{M \times d}$ denote the hidden layer matrix, where $M$ is the number of samples and $d$ is the dimensionality of the hidden representation. Each row of $\mathbf{H}$ corresponds to a feature vector $\mathbf{h}_i \in \mathbb{R}^{d}$, for $i = 1, \dots, M$.
+The HTC, also known as the Lawley–Hotelling trace, is a scalar measure of class separability and corresponds to the criterion maximized by Linear Discriminant Analysis (LDA). It is computed directly from the hidden-layer matrix $\mathbf{H}$.
 
-Each sample belongs to one of $C$ classes indexed by $c \in \{1, \dots, C\}$. Let $m_c$ denote the number of samples in class $c$. The mean hidden representation of class $c$ is defined as
+Let $\mathbf{H} \in \mathbb{R}^{M \times N}$, where $M$ is the number of samples and $N$ the dimensionality (number of neurons). Each row of $\mathbf{H}$ is a hidden-layer state vector $\mathbf{h}_m^{T}$, for $m = 1, \dots, M$. Each sample belongs to one of $K$ classes, with $M_k$ samples in class $k$.
 
-$$
-\boldsymbol{\mu}_c = \frac{1}{m_c} \sum_{i \in c} \mathbf{h}_i
-$$
-
-where $i \in c$ denotes the set of indices of samples belonging to class $c$.
-
-The global mean of the hidden layer is
+The class-mean and global-mean representations are
 
 $$
-\boldsymbol{\mu} = \frac{1}{M} \sum_{i=1}^{M} \mathbf{h}_i
+\boldsymbol{\mu}_k = \frac{1}{M_k} \sum_{m \in k} \mathbf{h}_m ,
+\qquad
+\boldsymbol{\mu} = \frac{1}{M} \sum_{m=1}^{M} \mathbf{h}_m = \frac{1}{M}\sum_{k=1}^{K} M_k \boldsymbol{\mu}_k .
 $$
 
-The within-class scatter matrix is defined as
+In analogy with multiclass LDA, the between-class and within-class scatter matrices are
 
 $$
-\mathbf{S}_W =
-\sum_{c=1}^{C} \sum_{i \in c}
-(\mathbf{h}_i - \boldsymbol{\mu}_c)(\mathbf{h}_i - \boldsymbol{\mu}_c)^T
+\mathbf{S}_B = \sum_{k=1}^{K} M_k (\boldsymbol{\mu}_k - \boldsymbol{\mu})(\boldsymbol{\mu}_k - \boldsymbol{\mu})^{T} ,
 $$
 
-The between-class scatter matrix is defined as
-
 $$
-\mathbf{S}_B =
-\sum_{c=1}^{C}
-m_c (\boldsymbol{\mu}_c - \boldsymbol{\mu})(\boldsymbol{\mu}_c - \boldsymbol{\mu})^T
+\mathbf{S}_W = \sum_{k=1}^{K} \sum_{m \in k} (\mathbf{h}_m - \boldsymbol{\mu}_k)(\mathbf{h}_m - \boldsymbol{\mu}_k)^{T} .
 $$
 
-The Hotelling trace criterion is given by
+The HTC is the scalar separability metric obtained by normalizing the between-class scatter by the within-class scatter:
 
 $$
-J_F = \mathrm{tr}\left(\mathbf{S}_W^{-1}\mathbf{S}_B\right)
+\mathrm{HTC} = \mathrm{tr}\left(\mathbf{S}_W^{-1}\mathbf{S}_B\right) = \sum_{i}\lambda_{i} ,
 $$
 
-In practice, for numerical stability, $\mathbf{S}_W$ is often regularized before inversion (e.g., $\mathbf{S}_W + \varepsilon \mathbf{I}$). A larger value of $J_F$ indicates better class separability in the hidden representation.
+where $\mathrm{tr}$ is the matrix trace and the $\lambda_i$ are the non-zero eigenvalues of $\mathbf{S}_W^{-1}\mathbf{S}_B$, each representing the ratio of between-class to within-class variation along a principal direction. A larger HTC indicates greater separation between class means relative to the within-class spread. For numerical stability, $\mathbf{S}_W$ is regularized before inversion (e.g. $\mathbf{S}_W + \varepsilon \mathbf{I}$).
