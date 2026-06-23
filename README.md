@@ -20,9 +20,7 @@ In analogy with multiclass LDA, the between-class and within-class scatter matri
 
 $$
 \mathbf{S}_B = \sum_{k=1}^{K} M_k (\boldsymbol{\mu}_k - \boldsymbol{\mu})(\boldsymbol{\mu}_k - \boldsymbol{\mu})^{T} ,
-$$
-
-$$
+\qquad
 \mathbf{S}_W = \sum_{k=1}^{K} \sum_{m \in k} (\mathbf{h}_m - \boldsymbol{\mu}_k)(\mathbf{h}_m - \boldsymbol{\mu}_k)^{T} .
 $$
 
