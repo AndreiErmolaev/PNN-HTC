@@ -1,10 +1,10 @@
-# Hotelling Trace Criterion (HTC) for Physics-Based Extreme Learning Machines
+# Hotelling Trace Criterion (HTC) for analysis and performance evaluation of Physical Neural Networks (PNN)
 
-This repository accompanies our paper on the Hotelling Trace Criterion (HTC) as a predictive metric for physics-based extreme learning machines (ELMs). It provides the core Python function that performs the full HTC analysis of a physics-based ELM and computes the associated metrics. Usage examples and guidelines will be added.
+This repository accompanies our paper on the Hotelling Trace Criterion (HTC) as a predictive metric for physics-based extreme learning machines (ELMs). It provides the core Python function that performs the full HTC analysis of a ELM and computes the associated metrics. Usage examples and guidelines will be added.
 
 ## Hotelling Trace Criterion (HTC)
 
-The HTC, also known as the Lawley–Hotelling trace, is a scalar measure of class separability and corresponds to the criterion maximized by Linear Discriminant Analysis (LDA). It is computed directly from the hidden-layer matrix $\mathbf{H}$.
+The HTC, also known as the Lawley–Hotelling trace, is a scalar measure of class separability and corresponds to the criterion maximized by Linear Discriminant Analysis. It is computed directly from the hidden-layer matrix $\mathbf{H}$.
 
 Let $\mathbf{H} \in \mathbb{R}^{M \times N}$, where $M$ is the number of samples and $N$ the dimensionality (number of neurons). Each row of $\mathbf{H}$ is a hidden-layer state vector $\mathbf{h}_m^{T}$, for $m = 1, \dots, M$. Each sample belongs to one of $K$ classes, with $M_k$ samples in class $k$.
 
