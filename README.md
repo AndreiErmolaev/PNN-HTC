@@ -1,6 +1,6 @@
 # Hotelling Trace Criterion (HTC) for analysis and performance evaluation of Physical Neural Networks (PNN)
 
-This repository accompanies our paper on the Hotelling Trace Criterion (HTC) as a predictive metric for physics-based extreme learning machines (ELMs). It provides the core Python function that performs the full HTC analysis of a ELM and computes the associated metrics. Usage examples and guidelines will be added.
+This repository accompanies our paper on the Hotelling Trace Criterion (HTC) as a predictive metric for physics-based extreme learning machines (ELMs): https://arxiv.org/abs/2606.31588. It provides the core Python function that performs the full HTC analysis of a ELM and computes the associated metrics. Usage examples and guidelines are highlighted below.
 
 ## Hotelling Trace Criterion (HTC)
 
@@ -31,3 +31,30 @@ $$
 $$
 
 where $\mathrm{tr}$ is the matrix trace and the $\lambda_i$ are the non-zero eigenvalues of $\mathbf{S}_W^{-1}\mathbf{S}_B$, each representing the ratio of between-class to within-class variation along a principal direction. A larger HTC indicates greater separation between class means relative to the within-class spread. For numerical stability, $\mathbf{S}_W$ is regularized before inversion (e.g. $\mathbf{S}_W + \varepsilon \mathbf{I}$).
+
+
+## Experimental and numerical simulation data
+
+The `Data` folder contains the three datasets considered in this work, corresponding
+to two different PNN systems: fiber-based ELM experimental data, fiber-based ELM
+numerical simulation data, and VCSEL-based PNN experimental data. Each file holds the
+output hidden-layer state of a PNN — its response to a given input (see the paper for
+details). Within each folder, the data is split into training and test sets obtained
+for different choices of physical parameters.
+
+The hidden-layer dimensions are:
+
+| System                        | Training   | Test      |
+|-------------------------------|------------|-----------|
+| Fiber-based ELM (exp. & sim.) | 9000 × 600 | 1000 × 600 |
+| VCSEL (exp.)                  | 4500 × 600 | 500 × 600  |
+
+where the first number is the number of samples and the second the number of
+hidden-layer neurons. The data was preprocessed to match dimensionality across the two
+platforms by linearly interpolating each hidden-layer representation to N = 600 neurons.
+All data is obtained for the MNIST handwritten-digit benchmark.
+
+The execution code loads all datasets and processes them with the `elm_classifier`
+function (see the `Utils` folder), which computes the HTC, performs ridge regression
+on the output hidden layer, and computes the MSE. Finally, it produces a plot of test
+accuracy, MSE and HTC as a function of the physical parameter of each system.
