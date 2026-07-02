@@ -35,12 +35,13 @@ where $\mathrm{tr}$ is the matrix trace and the $\lambda_i$ are the non-zero eig
 
 ## Experimental and numerical simulation data
 
-The `Data` folder contains the three datasets considered in this work, corresponding
+The `Data` folder contains the three datasets corresponding
 to two different PNN systems: fiber-based ELM experimental data, fiber-based ELM
 numerical simulation data, and VCSEL-based PNN experimental data. Each file holds the
-output hidden-layer state of a PNN — its response to a given input (see the paper for
+output hidden-layer state of a corresponding PNN — its response to a given input (see the paper for
 details). Within each folder, the data is split into training and test sets obtained
-for different choices of physical parameters.
+for different choices of physical parameters (for different nonlinear parameters in the case of 
+fiber-based PNN and for different wavelength in the case of VCSEL-based PNN).
 
 The hidden-layer dimensions are:
 
@@ -54,7 +55,7 @@ hidden-layer neurons. The data was preprocessed to match dimensionality across t
 platforms by linearly interpolating each hidden-layer representation to N = 600 neurons.
 All data is obtained for the MNIST handwritten-digit benchmark.
 
-The execution code loads all datasets and processes them with the `elm_classifier`
-function (see the `Utils` folder), which computes the HTC, performs ridge regression
+The execution code loads all datasets and processes them using the `elm_classifier`
+function (see the `Utils` folder), which essentially computes the HTC, performs ridge regression
 on the output hidden layer, and computes the MSE. Finally, it produces a plot of test
 accuracy, MSE and HTC as a function of the physical parameter of each system.
