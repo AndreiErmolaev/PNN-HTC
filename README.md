@@ -59,3 +59,14 @@ The execution code loads all datasets and processes them using the `elm_classifi
 function (see the `Utils` folder), which essentially computes the HTC, performs ridge regression
 on the output hidden layer, and computes the MSE. Finally, it produces a plot of test
 accuracy, MSE and HTC as a function of the physical parameter of each system.
+
+## Coupled nonlinear oscillator network (CNON)
+
+The `CNON` folder contains a minimal pipeline that regenerates the results obtained with the
+numerical coupled nonlinear oscillator network (CNON) PNN: the CNON data of Fig. 4 and the
+layer-resolved HTC of the multilayer CNON trained by backpropagation in Fig. 5. The hidden layers
+of the CNON are analysed with the same `elm_classifier` function as the experimental data. See
+`CNON/README.md` for the model, the settings, and the comparison with the published values.
+
+The CNON model is adapted from the implementation by Anas Skalli:
+https://github.com/ASkalli/nonlinear_oscillator_network (see also https://github.com/ASkalli).
