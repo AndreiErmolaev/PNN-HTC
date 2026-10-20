@@ -1,6 +1,6 @@
-# Hotelling Trace Criterion (HTC) for analysis and performance evaluation of Physical Neural Networks (PNN)
+# Hotelling Trace Criterion (HTC) for analysis and performance evaluation of Physical Neural Networks
 
-This repository accompanies our paper on the Hotelling Trace Criterion (HTC) as a predictive metric for physics-based extreme learning machines (ELMs): https://arxiv.org/abs/2606.31588. It provides the core Python function that performs the full HTC analysis of a ELM and computes the associated metrics. Usage examples and guidelines are highlighted below.
+This repository accompanies our paper on the Hotelling Trace Criterion (HTC) for analysis and performance evaluation of Physical Neural Networks (PNN): https://arxiv.org/abs/2606.31588. It provides the main Python functions that perform the full HTC analysis based on the output state of a PNN and compute the associated metrics. Usage examples and guidelines are highlighted below.
 
 ## Hotelling Trace Criterion (HTC)
 
