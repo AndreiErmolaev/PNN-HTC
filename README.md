@@ -6,7 +6,7 @@ This repository accompanies our paper on the Hotelling Trace Criterion (HTC) for
 
 The HTC, also known as the Lawley–Hotelling trace, is a scalar measure of class separability and corresponds to the criterion maximized by Linear Discriminant Analysis. It is computed directly from the hidden-layer matrix $\mathbf{H}$.
 
-Let $\mathbf{H} \in \mathbb{R}^{M \times N}$, where $M$ is the number of samples and $N$ the dimensionality (number of neurons). Each row of $\mathbf{H}$ is a hidden-layer state vector $\mathbf{h}_m^{T}$, for $m = 1, \dots, M$. Each sample belongs to one of $K$ classes, with $M_k$ samples in class $k$.
+Let $\mathbf{H} \in \mathbb{R}^{M \times N}$, where $M$ is the number of samples and $N$ the dimensionality (number of neurons). Each row of $\mathbf{H}$ is a hidden-layer state vector $\mathbf{h}_m^{T}$ for $m = 1, \dots, M$. Each sample belongs to one of $K$ classes, with $M_k$ samples in class $k$.
 
 The class-mean and global-mean representations are
 
