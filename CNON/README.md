@@ -19,7 +19,7 @@ $$
 
 where $\mathbf{h}^{[0]}$ is the input image and $\alpha$ the damping coefficient. The input is clamped while the network is integrated with explicit Euler steps ($dt = 0.1$, $\mathbf{h} = 0$ at $t = 0$). In the ELM configuration, integration stops when $\max|d\mathbf{h}/dt| < 10^{-4}$ over the batch, or after 100 steps. In the backpropagation configuration, it runs for a fixed 50 steps.
 
-`cnon.py` is a port of Anas Skalli's model code (see [Credits](#credits)). With the same random seed it builds the same network and produces bit-identical states, gradients and parameter updates.
+`cnon.py` is a port of Anas Skalli's model code (see [Credits](#credits)).
 
 ## Pipeline
 
