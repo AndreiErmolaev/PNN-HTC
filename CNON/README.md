@@ -1,10 +1,9 @@
 # Coupled nonlinear oscillator network (CNON)
 
-This folder contains a minimal pipeline that regenerates the results of the paper obtained with the numerical coupled nonlinear oscillator network (CNON) PNN:
+This folder contains a minimal pipeline that reproduces the results of the paper obtained with the numerical coupled nonlinear oscillator network (CNON) PNN:
 
 - the CNON part of **Fig. 4**: test MSE versus HTC of the single-hidden-layer CNON on MNIST and fashion-MNIST, with the random-choice floor, the isotropic lower bound and the spectral description of each task;
 - **Fig. 5**: layer-resolved HTC of a 3-hidden-layer CNON trained by backpropagation;
-- the test accuracies of the 2- and 3-hidden-layer CNON quoted in the text.
 
 Figure and equation numbers refer to the current version of the manuscript.
 
@@ -13,9 +12,9 @@ Figure and equation numbers refer to the current version of the manuscript.
 Each hidden layer $l = 1, \dots, L$ of $N$ oscillators evolves according to
 
 $$
-\frac{d\mathbf{h}^{[l]}}{dt} = -\alpha\,\mathbf{h}^{[l]} + \sin\left(\mathbf{W}_\mathrm{rec}^{[l]}\mathbf{h}^{[l]} + \mathbf{W}_\mathrm{in}^{[l]}\mathbf{h}^{[l-1]} + \mathbf{b}^{[l]}\right),
+\frac{d\mathbf{h}^{[l]}}{dt} = -\alpha\mathbf{h}^{[l]} + \sin\left(\mathbf{W}_\mathrm{rec}^{[l]}\mathbf{h}^{[l]} + \mathbf{W}_\mathrm{in}^{[l]}\mathbf{h}^{[l-1]} + \mathbf{b}^{[l]}\right),
 \qquad
-\mathbf{y} = \mathbf{W}_\mathrm{out}\,\mathbf{h}^{[L]} + \mathbf{b}_\mathrm{out},
+\mathbf{y} = \mathbf{W}_\mathrm{out}\mathbf{h}^{[L]} + \mathbf{b}_\mathrm{out},
 $$
 
 where $\mathbf{h}^{[0]}$ is the input image and $\alpha$ the damping coefficient. The input is clamped while the network is integrated with explicit Euler steps ($dt = 0.1$, $\mathbf{h} = 0$ at $t = 0$). In the ELM configuration, integration stops when $\max|d\mathbf{h}/dt| < 10^{-4}$ over the batch, or after 100 steps. In the backpropagation configuration, it runs for a fixed 50 steps.
