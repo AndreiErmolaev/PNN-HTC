@@ -38,10 +38,10 @@ where $\mathrm{tr}$ is the matrix trace and the $\lambda_i$ are the non-zero eig
 The `Data` folder contains the three datasets corresponding
 to two different PNN systems: fiber-based ELM experimental data, fiber-based ELM
 numerical simulation data, and VCSEL-based PNN experimental data. Each file holds the
-output hidden-layer state of a corresponding PNN — its response to a given input (see the paper for
+output hidden-layer state of a corresponding PNN, specifically, its response to a given input (see the paper for
 details). Within each folder, the data is split into training and test sets obtained
 for different choices of physical parameters (for different nonlinear parameters in the case of 
-fiber-based PNN and for different wavelength in the case of VCSEL-based PNN).
+fiber-based PNN and for different operating wavelength in the case of VCSEL-based PNN).
 
 The hidden-layer dimensions are:
 
@@ -62,9 +62,9 @@ accuracy, MSE and HTC as a function of the physical parameter of each system.
 
 ## Coupled nonlinear oscillator network (CNON)
 
-The `CNON` folder contains a minimal pipeline that regenerates the results obtained with the
-numerical coupled nonlinear oscillator network (CNON) PNN: the CNON data of Fig. 4 and the
-layer-resolved HTC of the multilayer CNON trained by backpropagation in Fig. 5. The hidden layers
+The `CNON` folder contains a minimal pipeline that reproduces the results obtained for the
+numerical coupled nonlinear oscillator network (CNON) PNN (see Fig. 4 showing CNON ELM data and the
+layer-resolved HTC of the multilayer CNON trained by backpropagation in Fig. 5 of the main paper). The hidden layers
 of the CNON are analysed with the same `elm_classifier` function as the experimental data. See
 `CNON/README.md` for the model, the settings, and the comparison with the published values.
 
