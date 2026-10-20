@@ -28,7 +28,6 @@ where $\mathbf{h}^{[0]}$ is the input image and $\alpha$ the damping coefficient
 | `run_alpha_sweep.py --dataset mnist` / `fashion` | `results/alpha_sweep_<dataset>.npz` | CNON points and spectra of Fig. 4 |
 | `run_backprop.py --layers 3` / `2` | `results/backprop_L<L>.npz` | Fig. 5, accuracy of 2 vs 3 layers |
 | `make_figures.py` | `figures/fig4_cnon.*`, `figures/fig5_cnon.*` | Figs. 4 and 5 |
-| `verify.py` | `results/verification.md`, `figures/check_fig4.png`, `figures/check_fig5.png` | comparison with the published values |
 
 `cnon.py` holds the model. `htc.py` holds the scatter matrices, the HTC, the discriminant spectrum $\lambda_i$, and the MSE–HTC corridor with its spectral fit. The ELM readout and the HTC of the $\alpha$-sweep are computed with `../Utils/elm_classifier.py`, the function also used for the HNLF and LA-VCSEL data.
 
@@ -66,26 +65,6 @@ python verify.py
 ```
 
 torchvision downloads MNIST and fashion-MNIST into `CNON/.data`; use `--data-root` to point to an existing copy. On a 6-core laptop CPU (no GPU), each sweep takes about 8 min and each backpropagation run 5–8 min. The saved results in `results/` let you redraw the figures and rerun the verification without recomputing.
-
-## Verification
-
-The published CNON values come from several independent, unseeded runs, collected with their notebook provenance in `reference/published_cnon.json`. A new run can therefore agree with them only within the spread between those runs: about 2 % median and 15 % maximum pointwise difference in the HTC, and 1.5 % and 7 % in the test MSE.
-
-`verify.py` compares the results in `results/` with these values. All 27 checks pass (`results/verification.md`); `figures/check_fig4.png` and `figures/check_fig5.png` overlay the reproduced and published data.
-
-- **Fig. 4, MNIST:**
-  - Against the published run, the HTC differs by 2.0 % (median) / 9.4 % (max) and the test MSE by 1.8 % / 5.6 %.
-  - Best test MSE: 0.0296 at $\alpha \approx 0.7$ (published 0.0291–0.0294, same $\alpha$).
-  - $\eta = 13.3$ (published CNON spectra: 13.3).
-- **Fig. 4, fashion-MNIST:**
-  - HTC differs by 1.7 % / 11.8 % and test MSE by 1.6 % / 5.3 %.
-  - $\eta = 30.8$ (published CNON spectra: 31.0).
-- **Fig. 5:**
-  - The first hidden layer's HTC peaks after 4 epochs and then decreases by 34 % (published: epoch 3, 33 %). The HTC of layers 2 and 3 grows about 3-fold and saturates.
-  - Layer 3 / layer 1 HTC ratio at epoch 20: 4.87 (published 4.87).
-  - Test MSE at epoch 20: 0.0057 (published 0.0060).
-  - Log–log correlation with the test MSE: $r = -0.998$ (layer 2) and $-0.997$ (layer 3).
-- **Accuracy after 20 epochs:** 96.49 % (2 layers) and 96.56 % (3 layers), against the 96.3 % and 96.8 % quoted in the text. The difference between the two depths is within the epoch-to-epoch fluctuation of about 0.2 %.
 
 ## Implementation details
 
