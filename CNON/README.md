@@ -78,8 +78,7 @@ These follow the code that produced the published data and are kept unchanged he
   - the number of steps;
   - the final $\max|d\mathbf{h}/dt|$;
   - the fraction of samples above the threshold.
-- The single-hidden-layer CNON of the original runs was a two-layer network read out at its first layer. The unused layer only changes the step at which the integration stops; the effect on the HTC and the test MSE is below $10^{-6}$ (relative).
-- The published runs were not seeded. A seeded run agrees with them within the spread between independent runs, not exactly.
+
 
 ## Credits
 
